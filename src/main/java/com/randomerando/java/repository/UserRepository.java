@@ -1,4 +1,7 @@
 package com.randomerando.java.repository;
 
-public interface UtilisateurRepository {
+import com.randomerando.java.model.utilisateur;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<utilisateur, Integer> {
 }
