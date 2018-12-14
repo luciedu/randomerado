@@ -1,5 +1,6 @@
 package com.randomerando.java.model;
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -7,7 +8,11 @@ import java.util.*;
 
 public class utilisateur {
 
-    @ManyToMany(mappedBy = "utilisateurs")
+    @ManyToMany(fetch = FetchType.EAGER)
+            @JoinTable(name = "utilisateurs_randonnees",
+            joinColumns = @JoinColumn(name = "Id_Utilisateur"),
+            inverseJoinColumns = @JoinColumn (name = "id_r")
+    )
     private List<rando> randonnees;
 
     @Id
@@ -71,7 +76,7 @@ public class utilisateur {
     //Constructeurs
     public utilisateur() {}
 
-    public utilisateur(String pseudo_Utilisateur, String nom_Utilisateur, String prenom_Utilisateur, String email_Utilisateur, Integer age_Utilisateur, Boolean enfants_Utilisateur, Date date_i, Boolean admin_i, Boolean modo_i, Integer mot_De_Passe_Utilisateur) {
+    public utilisateur( String pseudo_Utilisateur, String nom_Utilisateur, String prenom_Utilisateur, String email_Utilisateur, Integer age_Utilisateur, Boolean enfants_Utilisateur, Date date_i, Boolean admin_i, Boolean modo_i, Integer mot_De_Passe_Utilisateur) {
         Pseudo_Utilisateur = pseudo_Utilisateur;
         Nom_Utilisateur = nom_Utilisateur;
         Prenom_Utilisateur = prenom_Utilisateur;
@@ -172,4 +177,14 @@ public class utilisateur {
     public void setMot_De_Passe_Utilisateur(Integer mot_De_Passe_Utilisateur) {
         Mot_De_Passe_Utilisateur = mot_De_Passe_Utilisateur;
     }
+
+    public List<rando> getRandonnees() {
+        return randonnees;
+    }
+
+    public void setRandonnees(List<rando> randonnees) {
+        this.randonnees = randonnees;
+    }
+
+
 }

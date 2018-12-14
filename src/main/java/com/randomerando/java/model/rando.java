@@ -5,14 +5,10 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "rando")
+@Table(name = "randonnees")
 
 public class rando {
-    @ManyToMany
-    @JoinTable(name = "utilisateurs_randonnees",
-            joinColumns = @JoinColumn(name = "id_r"),
-            inverseJoinColumns = @JoinColumn (name = "id_utilisateur")
-            )
+    @ManyToMany(mappedBy = "randonnees", fetch = FetchType.EAGER)
     private List<utilisateur> utilisateurs;
 
     @Id
@@ -130,4 +126,21 @@ public class rando {
     public void setDist_r(Integer dist_r) {
         this.dist_r = dist_r;
     }
+
+    public List<utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(List<utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+
+    public Integer getNote_r() {
+        return note_r;
+    }
+
+    public void setNote_r(Integer note_r) {
+        this.note_r = note_r;
+    }
+
 }
