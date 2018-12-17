@@ -1,4 +1,6 @@
 package com.randomerando.java.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +10,7 @@ import java.util.Set;
 @Table(name = "randonnees")
 
 public class rando {
+    @JsonBackReference //évite la boucle infini en many to many
     @ManyToMany(mappedBy = "randonnees", fetch = FetchType.EAGER)
     private List<utilisateur> utilisateurs;
 

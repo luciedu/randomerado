@@ -1,4 +1,6 @@
 package com.randomerando.java.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -9,16 +11,16 @@ import java.util.*;
 public class utilisateur {
 
     @ManyToMany(fetch = FetchType.EAGER)
-            @JoinTable(name = "utilisateurs_randonnees",
-            joinColumns = @JoinColumn(name = "Id_Utilisateur"),
-            inverseJoinColumns = @JoinColumn (name = "id_r")
+        @JsonManagedReference //évite la boucle infini en many to many
+        @JoinTable(name = "utilisateurs_randonnees",
+        joinColumns = @JoinColumn(name = "Id_Utilisateur"),
+        inverseJoinColumns = @JoinColumn (name = "id_r")
     )
     private List<rando> randonnees;
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer Id_Utilisateur;
-
     private String Pseudo_Utilisateur;
     private String Nom_Utilisateur;
     private String Prenom_Utilisateur;

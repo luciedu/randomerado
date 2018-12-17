@@ -14,7 +14,7 @@ public class randoservice {
     @Autowired
     private RandoRepository randoRepository;
 
-    public void lierRandoUtilisateur (Integer Id_Utilisateur, Integer id_r) throws Exception {
+    public utilisateur lierRandoUtilisateur (Integer Id_Utilisateur, Integer id_r) throws Exception {
         if(userRepository.exists(Id_Utilisateur))
         {
             utilisateur u = userRepository.findOne(Id_Utilisateur);
@@ -22,12 +22,12 @@ public class randoservice {
                 if (randoRepository.exists(id_r))
                 {
                     rando r = randoRepository.findOne(id_r);
-                    // instanciation de la classe
 
+                    // instanciation de la classe
                     u.getRandonnees().add(r);
 
                     //sauvegarde dans la BDD
-                    userRepository.save(u);
+                    return userRepository.save(u);
 
                 } else
                     {

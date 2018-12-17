@@ -52,9 +52,9 @@ public class JavaApplicationTests {
     }
 
 
-    @Test
+    @Test//(expected = Exception.class)
     public void Liaison()throws Exception {
-        RandoService.lierRandoUtilisateur(3,4);
+        RandoService.lierRandoUtilisateur(8,8);
 
     }
 
